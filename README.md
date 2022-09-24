@@ -13,12 +13,12 @@ $ air
 ### migration
 **up**
 ```sh
-$ make migrate-up
+$ make migrate-up $C={count}
 ```
 
 **down**
 ```sh
-$ make migrate-down
+$ make migrate-down $C={count}
 ```
 
 **fix dirty**
@@ -33,5 +33,5 @@ $ make migrate-force $V={version}
 ```sh
 $ curl localhost:5050/register  \
 -XPOST -H "content-type: application/json" \
--d '{"name": "yuhi", "email": "s7i.yuhi@gmail.com", "password": "password"}'
+-d '{"name": "yuhi", "email": "foo@gmail.com", "password": "password"}'
 ```
