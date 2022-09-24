@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: ln-api
+  description: learning nutorition api
+  version: 0.0.1
+servers:
+  - url: http://{host}:{port}/
+    description: develop
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "5050"
+paths:
+  /register:
+    post:
+      summary: "ユーザーの新規登録"
+      tags:
+        - "user"
+      requestBody:
+        $ref: "#/components/requestBodies/postRegisterRequestBody"
+      responses:
+        200:
+          description: "新規登録成功"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+
+  /login:
+    post:
+      summary: "ログイン"
+      tags:
+        - "user"
+      requestBody:
+        $ref: "#/components/requestBodies/postLoginRequestBody"
+      responses:
+        200:
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+
+  /nutoritions:
+    get:
+      summary: "栄養素一覧"
+      tags:
+        - "nutoritions"
+      responses:
+        200:
+          description: 一覧取得
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Nutorition"
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+    Nutorition:
+      type: object
+      properties:
+        id:
+          type: integer
+        effect:
+          type: string
+        image_url:
+          type: string
+  requestBodies:
+    postRegisterRequestBody:
+      description: 新規ユーザー登録のリクエスト
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+    postLoginRequestBody:
+      description: ログインのリクエスト
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string

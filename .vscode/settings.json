@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "swaggerviewer:openapi": [
+      "file:///Users/yuhi/app/ln-api/api/openapi.yml",
+      "file:///Users/yuhi/app/ln-api/api/openapi.yaml"
+    ]
+  }
+}

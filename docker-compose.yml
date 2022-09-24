@@ -1,0 +1,26 @@
+version: "3"
+services:
+  ln-adminer:
+    container_name: ln-adminer
+    hostname: adminer
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - ln-db
+  ln-db:
+    container_name: ln-db
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: admin
+      MYSQL_DATABASE: db
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ln-db-data:/var/lib/mysql
+    ports:
+      - "3366:3306"
+volumes:
+  ln-db-data:
